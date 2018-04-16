@@ -1,0 +1,16 @@
+version: '2'
+services:
+  app:
+    build: .
+    environment:
+      ENABLE_SSL: 'true'
+      KONG_PG_HOST: 'db'
+      KONG_PG_DATABASE: 'postgres'
+      KONG_PG_USER: "postgres"
+      KONG_PG_PASSWORD: 'postgres'
+      KONG_DNS_RESOLVER: ''
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
