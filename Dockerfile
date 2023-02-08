@@ -153,10 +153,10 @@ ADD kong-plugin-copy-header-0.1.0-1.rockspec /kong/
 ADD Makefile ./kong
 WORKDIR /kong/
 
-ADD https://raw.githubusercontent.com/articulate/docker-consul-template-bootstrap/master/wait-for-it.sh /wait-for-it.sh
-RUN chmod a+rx /wait-for-it.sh
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh /wait-for-it.sh
 
-RUN luarocks make kong-plugin-copy-header-0.1.0-1.rockspec
+RUN chmod a+rx /wait-for-it.sh \
+    && luarocks make kong-plugin-copy-header-0.1.0-1.rockspec
 
 ENV KONG_CUSTOM_PLUGINS=copy-header
 
